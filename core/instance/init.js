@@ -1,3 +1,5 @@
+import { constructorProxy } from './proxy.js';
+
 
 let uid = 0;
 
@@ -8,6 +10,9 @@ export function initMixin (Vue) {
         vm.isVue = true;
 
         // 初始化data
+        if(options && typeof options === 'object'){
+            vm._data = constructorProxy(vm, options.data,'');
+        }
         // 初始化created
         // 初始化methods
         // 初始化computed
