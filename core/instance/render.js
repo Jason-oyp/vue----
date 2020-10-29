@@ -72,6 +72,15 @@ function renderNode(vm, vnode) {
     }
 }
 
+export function renderData(vm,data){
+    const result = template2Vnode.get(data);
+    if(result){
+        for (let i = 0; i < result.length; i++) {
+            renderNode(vm,result[i]);
+        }
+    }
+}
+
 export function renderMixin(Vue) {
     Vue.prototype._render = function () {
         renderNode(this, this._vnode);

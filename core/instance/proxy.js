@@ -1,3 +1,5 @@
+import { renderData } from "./render.js";
+
 function getNamespace(nowNamespace, nowProp) {
     if (nowNamespace == '') {
         return nowProp;
@@ -5,8 +7,6 @@ function getNamespace(nowNamespace, nowProp) {
         return `${nowNamespace}.${nowProp}`
     }
 }
-
-
 
 // 对数组的各种方法进行代理
 function constructorArr(vm, arr, namespace) {
@@ -38,6 +38,7 @@ function constructorObj(vm, obj, namespace) {
             set(val) {
                 // console.log(getNamespace(namespace,prop));
                 obj[prop] = val;
+                renderData(vm,getNamespace(namespace,prop));
             }
         });
         Object.defineProperty(vm, prop, {
@@ -46,8 +47,9 @@ function constructorObj(vm, obj, namespace) {
                 return obj[prop];
             },
             set(val) {
-                console.log(getNamespace(namespace,prop));
+                // console.log(getNamespace(namespace,prop));
                 obj[prop] = val;
+                renderData(vm,getNamespace(namespace,prop));
             }
         });
         if (typeof obj[prop] === 'object') {
