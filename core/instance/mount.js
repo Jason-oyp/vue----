@@ -1,7 +1,9 @@
 import VNode from '../Vdom/Vnode.js';
+import prepareRender from './render.js';
 
 export function mount(vm, el) {
     vm._vnode = constructVNode(vm, el, null);
+    prepareRender(vm,vm._vnode);
 }
 
 function getNodeText(el) {

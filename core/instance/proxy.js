@@ -36,7 +36,7 @@ function constructorObj(vm, obj, namespace) {
                 return obj[prop];
             },
             set(val) {
-                console.log(getNamespace(namespace,prop));
+                // console.log(getNamespace(namespace,prop));
                 obj[prop] = val;
             }
         });
